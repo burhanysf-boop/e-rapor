@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portal E-Rapor</title>
+    <style>
+        /* Menggunakan dvh (Dynamic Viewport Height) agar pas di HP */
+        body, html {
+            margin: 0; padding: 0; 
+            width: 100%; height: 100%;
+            height: 100dvh; 
+            overflow: hidden; 
+            background-color: #ffffff;
+            font-family: sans-serif;
+            display: flex; 
+            flex-direction: column;
+        }
+        
+        /* Area Konten */
+        .content {
+            flex: 1; 
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none; 
+            display: none;
+        }
+
+        iframe.active { display: block; }
+
+        /* Navigasi Bawah */
+        .bottom-nav {
+            height: 65px; 
+            display: flex;
+            background-color: #f8f9fa; 
+            border-top: 1px solid #ddd;
+            padding-bottom: env(safe-area-inset-bottom); /* Support iPhone modern */
+            box-sizing: content-box;
+        }
+        
+        .tab-btn {
+            flex: 1; border: none; background: transparent;
+            font-size: 13px; cursor: pointer; font-weight: bold;
+            outline: none; transition: 0.2s;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            border-right: 1px solid #eee;
+        }
+        
+        /* Menghilangkan garis kanan pada tombol terakhir */
+        .tab-btn:last-child { border-right: none; }
+
+        /* Tombol Kelas X (Hijau) */
+        #btnX { color: #188038; }
+        #btnX.active { background-color: #e6f4ea; border-top: 4px solid #188038; }
+
+        /* Tombol Kelas XI (Kuning Emas) */
+        #btnXI { color: #d48806; }
+        #btnXI.active { background-color: #fffbe6; border-top: 4px solid #d48806; }
+
+        /* Tombol Kelas XII (Biru) */
+        #btnXII { color: #1a73e8; }
+        #btnXII.active { background-color: #e8f0fe; border-top: 4px solid #1a73e8; }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <!-- LINK 1: Kelas X -->
+        <iframe id="frameX" class="active" 
+            src="https://script.google.com/macros/s/AKfycbwfnGQteGKn1jS-FPb7sH1vFgs9nQOMpOnNXIAJ7Nqn24Z2M0mAkxjO3ioY0e4Lulfd9w/exec"></iframe>
+        
+        <!-- LINK 2: Kelas XI -->
+        <iframe id="frameXI" 
+            src="https://script.google.com/macros/s/AKfycbyAjMHT9mwdnzbOu2emlFTEN2o8WpnJuzKw8S4hK8jKaSxfHMwTiNt0a41CRgLRpw4cmQ/exec"></iframe>
+
+        <!-- LINK 3: Kelas XII -->
+        <iframe id="frameXII" 
+            src="https://script.google.com/macros/s/AKfycbwr-mYJFNUXFycB_HIiZVXrZMJnEgm9_tFEKq754JrX7qQkmLO04N1mR2EUHXkKbolXEw/exec"></iframe>
+    </div>
+
+    <div class="bottom-nav">
+        <button id="btnX" class="tab-btn active" onclick="switchTab('X')">Kelas X</button>
+        <button id="btnXI" class="tab-btn" onclick="switchTab('XI')">Kelas XI</button>
+        <button id="btnXII" class="tab-btn" onclick="switchTab('XII')">Kelas XII</button>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Array dari semua ID kelas
+            const tabs = ['X', 'XI', 'XII'];
+            
+            // Loop untuk mereset semua frame dan tombol
+            tabs.forEach(function(t) {
+                document.getElementById('frame' + t).classList.remove('active');
+                document.getElementById('btn' + t).classList.remove('active');
+            });
+            
+            // Aktifkan frame dan tombol sesuai yang diklik user
+            document.getElementById('frame' + tab).classList.add('active');
+            document.getElementById('btn' + tab).classList.add('active');
+        }
+    </script>
+</body>
+</html>
