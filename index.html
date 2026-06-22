@@ -2,112 +2,226 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Portal E-Rapor SMAN 5 Makassar</title>
-    <link rel="icon" type="image/png" href="https://iili.io/FYaqxfV.th.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Layanan Akademik</title>
     <style>
-        /* Menggunakan dvh (Dynamic Viewport Height) agar pas di HP */
-        body, html {
-            margin: 0; padding: 0; 
-            width: 100%; height: 100%;
-            height: 100dvh; 
-            overflow: hidden; 
-            background-color: #ffffff;
-            font-family: sans-serif;
-            display: flex; 
-            flex-direction: column;
-        }
-        
-        /* Area Konten */
-        .content {
-            flex: 1; 
-            width: 100%;
-            position: relative;
-            overflow: hidden;
+        :root {
+            --primary: #1e40af;
+            --primary-hover: #1d4ed8;
+            --secondary: #0f172a;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
 
-        iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none; 
-            display: none;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        iframe.active { display: block; }
-
-        /* Navigasi Bawah */
-        .bottom-nav {
-            height: 65px; 
+        body {
+            background-color: var(--background);
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
-            background-color: #f8f9fa; 
-            border-top: 1px solid #ddd;
-            padding-bottom: env(safe-area-inset-bottom); /* Support iPhone modern */
-            box-sizing: content-box;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        
-        .tab-btn {
-            flex: 1; border: none; background: transparent;
-            font-size: 13px; cursor: pointer; font-weight: bold;
-            outline: none; transition: 0.2s;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            border-right: 1px solid #eee;
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        
-        /* Menghilangkan garis kanan pada tombol terakhir */
-        .tab-btn:last-child { border-right: none; }
 
-        /* Tombol Kelas X (Hijau) */
-        #btnX { color: #188038; }
-        #btnX.active { background-color: #e6f4ea; border-top: 4px solid #188038; }
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
 
-        /* Tombol Kelas XI (Kuning Emas) */
-        #btnXI { color: #d48806; }
-        #btnXI.active { background-color: #fffbe6; border-top: 4px solid #d48806; }
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+        }
 
-        /* Tombol Kelas XII (Biru) */
-        #btnXII { color: #1a73e8; }
-        #btnXII.active { background-color: #e8f0fe; border-top: 4px solid #1a73e8; }
+        header p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1.25rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            border-top-left-radius: 1.25rem;
+            border-top-right-radius: 1.25rem;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: #cbd5e1;
+        }
+
+        .icon-wrapper {
+            background-color: #eff6ff;
+            color: var(--primary);
+            width: 4.5rem;
+            height: 4.5rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.75rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .card:hover .icon-wrapper {
+            background-color: #dbeafe;
+        }
+
+        .card h2 {
+            font-size: 1.625rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            font-size: 0.975rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: 0.75rem;
+            width: 100%;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 2px 4px rgb(37 99 235 / 0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            background-color: #ffffff;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Portal Akademik Sekolah</h1>
+            <p>Silakan pilih jenjang kelas di bawah ini untuk mengakses layanan administrasi, pembelajaran, dan sistem penilaian digital.</p>
+        </header>
 
-    <div class="content">
-        <!-- LINK 1: Kelas X -->
-        <iframe id="frameX" class="active" 
-            src="https://script.google.com/a/~/macros/s/AKfycbyoxK_5SnDVxNKpaCyiMtls31iGVibzI5KSOchZXjCqBriAVI-_ImDw-MCrbye6kEQKqg/exec"></iframe>
-        
-        <!-- LINK 2: Kelas XI -->
-        <iframe id="frameXI" 
-            src="https://script.google.com/a/~/macros/s/AKfycbwMSc4TY5mV-Z6-c8C1gzfx3FB4eq8PKk3ZbRxPZO4NJ2VUyKZxMoInNQttVbZt4mlFBw/exec"></iframe>
+        <main class="grid">
+            <div class="card">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                </div>
+                <div>
+                    <h2>Kelas X</h2>
+                    <p>Akses dasbor penilaian, data administratif, dan layanan rekapitulasi nilai untuk seluruh siswa Kelas X.</p>
+                </div>
+                <a href="https://script.google.com/a/~/macros/s/AKfycbyoxK_5SnDVxNKpaCyiMtls31iGVibzI5KSOchZXjCqBriAVI-_ImDw-MCrbye6kEQKqg/exec" target="_blank" rel="noopener noreferrer" class="btn">Buka Aplikasi</a>
+            </div>
 
-        <!-- LINK 3: Kelas XII -->
-        <iframe id="frameXII" 
-            src="https://script.google.com/a/~/macros/s/AKfycbwr-mYJFNUXFycB_HIiZVXrZMJnEgm9_tFEKq754JrX7qQkmLO04N1mR2EUHXkKbolXEw/exec"></iframe>
+            <div class="card">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                </div>
+                <div>
+                    <h2>Kelas XI</h2>
+                    <p>Akses dasbor penilaian, data administratif, dan layanan rekapitulasi nilai untuk seluruh siswa Kelas XI.</p>
+                </div>
+                <a href="https://script.google.com/a/~/macros/s/AKfycbwMSc4TY5mV-Z6-c8C1gzfx3FB4eq8PKk3ZbRxPZO4NJ2VUyKZxMoInNQttVbZt4mlFBw/exec" target="_blank" rel="noopener noreferrer" class="btn">Buka Aplikasi</a>
+            </div>
+
+            <div class="card">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                </div>
+                <div>
+                    <h2>Kelas XII</h2>
+                    <p>Akses dasbor penilaian, data administratif, dan layanan rekapitulasi nilai untuk seluruh siswa Kelas XII.</p>
+                </div>
+                <a href="https://script.google.com/a/~/macros/s/AKfycbwr-mYJFNUXFycB_HIiZVXrZMJnEgm9_tFEKq754JrX7qQkmLO04N1mR2EUHXkKbolXEw/exec" target="_blank" rel="noopener noreferrer" class="btn">Buka Aplikasi</a>
+            </div>
+        </main>
     </div>
 
-    <div class="bottom-nav">
-        <button id="btnX" class="tab-btn active" onclick="switchTab('X')">Kelas X</button>
-        <button id="btnXI" class="tab-btn" onclick="switchTab('XI')">Kelas XI</button>
-        <button id="btnXII" class="tab-btn" onclick="switchTab('XII')">Kelas XII</button>
-    </div>
-
-    <script>
-        function switchTab(tab) {
-            // Array dari semua ID kelas
-            const tabs = ['X', 'XI', 'XII'];
-            
-            // Loop untuk mereset semua frame dan tombol
-            tabs.forEach(function(t) {
-                document.getElementById('frame' + t).classList.remove('active');
-                document.getElementById('btn' + t).classList.remove('active');
-            });
-            
-            // Aktifkan frame dan tombol sesuai yang diklik user
-            document.getElementById('frame' + tab).classList.add('active');
-            document.getElementById('btn' + tab).classList.add('active');
-        }
-    </script>
+    <footer>
+        <p>&copy; 2026 Portal Layanan Akademik Sekolah. Hak Cipta Dilindungi.</p>
+    </footer>
 </body>
 </html>
