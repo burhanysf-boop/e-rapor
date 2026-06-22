@@ -2,226 +2,145 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Layanan Akademik</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portal E-Rapor SMAN 5 Makassar</title>
+    <link rel="icon" type="image/png" href="https://iili.io/FYaqxfV.th.png">
     <style>
-        :root {
-            --primary: #1e40af;
-            --primary-hover: #1d4ed8;
-            --secondary: #0f172a;
-            --background: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #334155;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 1rem;
-        }
-
-        header p {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 1.25rem;
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #2563eb, #1d4ed8);
-            border-top-left-radius: 1.25rem;
-            border-top-right-radius: 1.25rem;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-            border-color: #cbd5e1;
-        }
-
-        .icon-wrapper {
-            background-color: #eff6ff;
-            color: var(--primary);
-            width: 4.5rem;
-            height: 4.5rem;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.75rem;
-            transition: background-color 0.2s ease;
-        }
-
-        .card:hover .icon-wrapper {
-            background-color: #dbeafe;
-        }
-
-        .card h2 {
-            font-size: 1.625rem;
-            color: var(--secondary);
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .card p {
-            font-size: 0.975rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.875rem 1.5rem;
-            border-radius: 0.75rem;
-            width: 100%;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 2px 4px rgb(37 99 235 / 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.875rem;
+        /* Menggunakan dvh (Dynamic Viewport Height) agar pas di HP */
+        body, html {
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%;
+            height: 100dvh; 
+            overflow: hidden; 
             background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex; 
+            flex-direction: column;
+        }
+        
+        /* Area Konten untuk iframe */
+        .content {
+            flex: 1; 
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: #f1f5f9; /* Warna latar sedikit abu agar tahu jika iframe belum muat */
+        }
+
+        iframe {
+            position: absolute;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            border: none; 
+            display: none;
+            /* Efek transisi ringan (Opsional) */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        iframe.active { 
+            display: block; 
+            opacity: 1;
+        }
+
+        /* Navigasi Bawah bergaya modern */
+        .bottom-nav {
+            height: 65px; 
+            display: flex;
+            background-color: #ffffff; 
+            border-top: 1px solid #e2e8f0;
+            padding-bottom: env(safe-area-inset-bottom); /* Support iPhone modern */
+            box-sizing: content-box;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
+        
+        .tab-btn {
+            flex: 1; 
+            border: none; 
+            background: transparent;
+            font-size: 14px; 
+            cursor: pointer; 
+            font-weight: 600;
+            outline: none; 
+            transition: all 0.2s ease;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            border-right: 1px solid #f1f5f9;
+        }
+        
+        .tab-btn:last-child { 
+            border-right: none; 
+        }
+
+        /* Tombol Kelas X (Hijau) */
+        #btnX { color: #64748b; }
+        #btnX.active { 
+            color: #188038; 
+            background-color: #e6f4ea; 
+            border-top: 4px solid #188038; 
+        }
+
+        /* Tombol Kelas XI (Kuning Emas) */
+        #btnXI { color: #64748b; }
+        #btnXI.active { 
+            color: #d48806; 
+            background-color: #fffbe6; 
+            border-top: 4px solid #d48806; 
+        }
+
+        /* Tombol Kelas XII (Biru) */
+        #btnXII { color: #64748b; }
+        #btnXII.active { 
+            color: #1a73e8; 
+            background-color: #e8f0fe; 
+            border-top: 4px solid #1a73e8; 
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Portal Akademik Sekolah</h1>
-            <p>Silakan pilih jenjang kelas di bawah ini untuk mengakses layanan administrasi, pembelajaran, dan sistem penilaian digital.</p>
-        </header>
 
-        <main class="grid">
-            <div class="card">
-                <div class="icon-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                </div>
-                <div>
-                    <h2>Kelas X</h2>
-                    <p>Akses dasbor penilaian, data administratif, dan layanan rekapitulasi nilai untuk seluruh siswa Kelas X.</p>
-                </div>
-                <a href="https://script.google.com/a/~/macros/s/AKfycbyoxK_5SnDVxNKpaCyiMtls31iGVibzI5KSOchZXjCqBriAVI-_ImDw-MCrbye6kEQKqg/exec" target="_self" class="btn">Buka Aplikasi</a>
-            </div>
+    <div class="content">
+        <iframe id="frameX" class="active" 
+            src="https://script.google.com/a/~/macros/s/AKfycbyoxK_5SnDVxNKpaCyiMtls31iGVibzI5KSOchZXjCqBriAVI-_ImDw-MCrbye6kEQKqg/exec"></iframe>
+        
+        <iframe id="frameXI" 
+            src="https://script.google.com/a/~/macros/s/AKfycbwMSc4TY5mV-Z6-c8C1gzfx3FB4eq8PKk3ZbRxPZO4NJ2VUyKZxMoInNQttVbZt4mlFBw/exec"></iframe>
 
-            <div class="card">
-                <div class="icon-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                </div>
-                <div>
-                    <h2>Kelas XI</h2>
-                    <p>Akses dasbor penilaian, data administratif, dan layanan rekapitulasi nilai untuk seluruh siswa Kelas XI.</p>
-                </div>
-                <a href="https://script.google.com/a/~/macros/s/AKfycbwMSc4TY5mV-Z6-c8C1gzfx3FB4eq8PKk3ZbRxPZO4NJ2VUyKZxMoInNQttVbZt4mlFBw/exec" target="_self" class="btn">Buka Aplikasi</a>
-            </div>
-
-            <div class="card">
-                <div class="icon-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                </div>
-                <div>
-                    <h2>Kelas XII</h2>
-                    <p>Akses dasbor penilaian, data administratif, dan layanan rekapitulasi nilai untuk seluruh siswa Kelas XII.</p>
-                </div>
-                <a href="https://script.google.com/a/~/macros/s/AKfycbwr-mYJFNUXFycB_HIiZVXrZMJnEgm9_tFEKq754JrX7qQkmLO04N1mR2EUHXkKbolXEw/exec" target="_self" class="btn">Buka Aplikasi</a>
-            </div>
-        </main>
+        <iframe id="frameXII" 
+            src="https://script.google.com/a/~/macros/s/AKfycbwr-mYJFNUXFycB_HIiZVXrZMJnEgm9_tFEKq754JrX7qQkmLO04N1mR2EUHXkKbolXEw/exec"></iframe>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Portal Layanan Akademik Sekolah. Hak Cipta Dilindungi.</p>
-    </footer>
+    <div class="bottom-nav">
+        <button id="btnX" class="tab-btn active" onclick="switchTab('X')">Kelas X</button>
+        <button id="btnXI" class="tab-btn" onclick="switchTab('XI')">Kelas XI</button>
+        <button id="btnXII" class="tab-btn" onclick="switchTab('XII')">Kelas XII</button>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Array dari semua ID kelas
+            const tabs = ['X', 'XI', 'XII'];
+            
+            // Loop untuk mereset semua frame dan tombol
+            tabs.forEach(function(t) {
+                // Sembunyikan iframe
+                document.getElementById('frame' + t).classList.remove('active');
+                
+                // Matikan gaya tombol aktif
+                document.getElementById('btn' + t).classList.remove('active');
+            });
+            
+            // Aktifkan frame dan tombol sesuai yang diklik user
+            document.getElementById('frame' + tab).classList.add('active');
+            document.getElementById('btn' + tab).classList.add('active');
+        }
+    </script>
 </body>
 </html>
