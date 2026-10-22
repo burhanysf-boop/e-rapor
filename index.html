@@ -8,15 +8,9 @@
     <style>
         :root {
             --primary: #1e40af;
-            --primary-hover: #1d4ed8;
             --secondary: #0f172a;
             --background: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #334155;
-            --text-muted: #64748b;
             --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
 
         * {
@@ -30,147 +24,9 @@
             width: 100%;
             height: 100%;
             background-color: var(--background);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-
-        /* --- TAMPILAN MENU UTAMA (KARTU) --- */
-        #mainMenu {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
             color: var(--secondary);
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 1rem;
-        }
-
-        header p {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 1.25rem;
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #2563eb, #1d4ed8);
-            border-top-left-radius: 1.25rem;
-            border-top-right-radius: 1.25rem;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-            border-color: #cbd5e1;
-        }
-
-        .icon-wrapper {
-            background-color: #eff6ff;
-            color: var(--primary);
-            width: 4.5rem;
-            height: 4.5rem;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.75rem;
-        }
-
-        .card h2 {
-            font-size: 1.625rem;
-            color: var(--secondary);
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .card p {
-            font-size: 0.975rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.875rem 1.5rem;
-            border-radius: 0.75rem;
-            width: 100%;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 2px 4px rgb(37 99 235 / 0.1);
-        }
-
-        .btn:hover { background-color: var(--primary-hover); }
-        .btn:active { transform: scale(0.98); }
-
-        footer {
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            background-color: #ffffff;
-        }
-
-        /* --- TAMPILAN IFRAME APLIKASI (DISEMBUNYIKAN AWALNYA) --- */
-        #appViewer {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: #ffffff;
-            z-index: 1000;
             flex-direction: column;
         }
 
@@ -182,34 +38,17 @@
             align-items: center;
             padding: 0 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex-shrink: 0;
         }
-
-        .btn-back {
-            background: transparent;
-            border: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-
-        .btn-back:hover { background-color: #eff6ff; }
 
         .app-title {
-            margin-left: 20px;
             font-weight: 700;
             color: var(--secondary);
             font-size: 1.1rem;
         }
 
         iframe {
-            flex: 1;
+            flex-grow: 1;
             width: 100%;
             height: 100%;
             border: none;
@@ -218,56 +57,11 @@
 </head>
 <body>
 
-    <div id="mainMenu">
-        <div class="container">
-            <header>
-                <h1>Portal Akademik Sekolah</h1>
-                <p>Silakan akses layanan administrasi, pembelajaran, dan sistem penilaian digital SMAN 5 Makassar melalui tombol di bawah ini.</p>
-            </header>
-
-            <main>
-                <div class="card">
-                    <div class="icon-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                    </div>
-                    <div>
-                        <h2>Layanan Rapor & Akademik</h2>
-                        <p>Akses dasbor penilaian, data administratif, dan layanan rekapitulasi nilai secara terpusat.</p>
-                    </div>
-                    <button class="btn" onclick="bukaAplikasi('https://script.google.com/macros/s/AKfycbwInXuwDCBCajJ56oVmS1HVcnqciS2bziB_C3vumTPwrTFDyPQxY5Sp8epPRr56WkQ/exec', 'Portal Layanan Akademik')">Buka Aplikasi</button>
-                </div>
-            </main>
-        </div>
-
-        <footer>
-            <p>&copy; 2026 Portal Layanan Akademik Sekolah. Hak Cipta Dilindungi.</p>
-        </footer>
+    <div class="app-header">
+        <div class="app-title">Portal Layanan Akademik SMAN 5 Makassar</div>
     </div>
 
-    <div id="appViewer">
-        <div class="app-header">
-            <button class="btn-back" onclick="tutupAplikasi()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                Kembali
-            </button>
-            <div class="app-title" id="judulAplikasi">Aplikasi</div>
-        </div>
-        <iframe id="appFrame" src=""></iframe>
-    </div>
+    <iframe src="https://script.google.com/a/~/macros/s/AKfycbwInXuwDCBCajJ56oVmS1HVcnqciS2bziB_C3vumTPwrTFDyPQxY5Sp8epPRr56WkQ/exec"></iframe>
 
-    <script>
-        function bukaAplikasi(url, judul) {
-            document.getElementById('mainMenu').style.display = 'none';
-            document.getElementById('appViewer').style.display = 'flex';
-            document.getElementById('judulAplikasi').innerText = judul;
-            document.getElementById('appFrame').src = url;
-        }
-
-        function tutupAplikasi() {
-            document.getElementById('appFrame').src = '';
-            document.getElementById('appViewer').style.display = 'none';
-            document.getElementById('mainMenu').style.display = 'flex';
-        }
-    </script>
 </body>
 </html>
